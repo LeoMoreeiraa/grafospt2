@@ -27,6 +27,10 @@ typedef struct Queue {
 // Funções da fila
 Queue* createQueue() {
     Queue* q = malloc(sizeof(Queue));
+    if (q == NULL) {
+        printf("Erro: Falha na alocação de memória para fila\n");
+        exit(1);
+    }
     q->front = -1;
     q->rear = -1;
     return q;
@@ -64,6 +68,10 @@ int dequeue(Queue* q) {
 // Criar um novo nó
 Node* createNode(int v) {
     Node* newNode = malloc(sizeof(Node));
+    if (newNode == NULL) {
+        printf("Erro: Falha na alocação de memória para nó\n");
+        exit(1);
+    }
     newNode->vertex = v;
     newNode->next = NULL;
     return newNode;
@@ -72,10 +80,26 @@ Node* createNode(int v) {
 // Criar um grafo com n vértices
 Graph* createGraph(int vertices) {
     Graph* graph = malloc(sizeof(Graph));
+    if (graph == NULL) {
+        printf("Erro: Falha na alocação de memória para grafo\n");
+        exit(1);
+    }
     graph->numVertices = vertices;
     
     graph->adjLists = malloc(vertices * sizeof(Node*));
+    if (graph->adjLists == NULL) {
+        printf("Erro: Falha na alocação de memória para listas de adjacência\n");
+        free(graph);
+        exit(1);
+    }
+    
     graph->visited = malloc(vertices * sizeof(bool));
+    if (graph->visited == NULL) {
+        printf("Erro: Falha na alocação de memória para array de visitados\n");
+        free(graph->adjLists);
+        free(graph);
+        exit(1);
+    }
     
     for (int i = 0; i < vertices; i++) {
         graph->adjLists[i] = NULL;
@@ -255,7 +279,6 @@ int main() {
     
     // Verificar se existe caminho entre vértices
     printf("\nVerificando caminhos:\n");
-    printf("Caminho entre 0 e 5: %s\n", hasPath(graph, 0, 5) ? "Sim" : "Não");
     printf("Caminho entre 0 e 5: %s\n", hasPath(graph, 0, 5) ? "Sim" : "Não");
     
     // Criar um segundo grafo direcionado como exemplo

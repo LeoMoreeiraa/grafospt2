@@ -1,0 +1,19 @@
+# Arquivos compilados
+grafos
+*.o
+*.out
+*.exe
+
+# Arquivos temporários
+*.tmp
+*~
+
+# Arquivos de debug
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db

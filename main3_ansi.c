@@ -430,12 +430,6 @@ void exibirResultadosCompleto(Vert G[], int ordem, PontoDeInteresse casa,
             if (j < len_path - 1) printf(" -> ");
         }
         
-        /* Se temos path_b, adiciona o último vértice */
-        if (len_b > 0) {
-            if (len_path > 0) printf(" -> ");
-            printf("V%d", path_b[0] + 1);
-        }
-        
         printf("\n");
         
         dist_acumulada += dist;
@@ -556,67 +550,68 @@ int main(void) {
     criaGrafo(&G, ordemG);
 
     /* Construindo o grafo com todas as arestas */
-    acrescentaAresta(G, ordemG, 0, 1, 213.2f);
-    acrescentaAresta(G, ordemG, 1, 2, 119.79f);
-    acrescentaAresta(G, ordemG, 2, 3, 46.35f);
-    acrescentaAresta(G, ordemG, 3, 4, 48.27f);
-    acrescentaAresta(G, ordemG, 0, 5, 111.17f);
-    acrescentaAresta(G, ordemG, 1, 6, 110.55f);
-    acrescentaAresta(G, ordemG, 2, 7, 110.94f);
-    acrescentaAresta(G, ordemG, 3, 8, 111.14f);
-    acrescentaAresta(G, ordemG, 4, 9, 111.27f);
-    acrescentaAresta(G, ordemG, 5, 6, 209.99f);
-    acrescentaAresta(G, ordemG, 6, 7, 119.42f);
-    acrescentaAresta(G, ordemG, 7, 8, 45.99f);
-    acrescentaAresta(G, ordemG, 8, 9, 46.92f);
-    acrescentaAresta(G, ordemG, 5, 11, 116.47f);
-    acrescentaAresta(G, ordemG, 6, 12, 114.34f);
-    acrescentaAresta(G, ordemG, 9, 14, 114.57f);
-    acrescentaAresta(G, ordemG, 10, 11, 150.16f);
-    acrescentaAresta(G, ordemG, 11, 12, 211.10f);
-    acrescentaAresta(G, ordemG, 12, 13, 96.89f);
-    acrescentaAresta(G, ordemG, 13, 14, 118.29f);
-    acrescentaAresta(G, ordemG, 14, 15, 212.88f);
-    acrescentaAresta(G, ordemG, 11, 16, 123.31f);
-    acrescentaAresta(G, ordemG, 12, 17, 116.35f);
-    acrescentaAresta(G, ordemG, 13, 18, 114.87f);
-    acrescentaAresta(G, ordemG, 14, 20, 121.40f);
-    acrescentaAresta(G, ordemG, 15, 21, 127.81f);
-    acrescentaAresta(G, ordemG, 16, 17, 211.79f);
-    acrescentaAresta(G, ordemG, 17, 18, 93.76f);
-    acrescentaAresta(G, ordemG, 18, 19, 41.71f);
-    acrescentaAresta(G, ordemG, 19, 20, 79.83f);
-    acrescentaAresta(G, ordemG, 20, 21, 212.83f);
-    acrescentaAresta(G, ordemG, 16, 22, 112.52f);
-    acrescentaAresta(G, ordemG, 17, 23, 111.62f);
-    acrescentaAresta(G, ordemG, 19, 24, 107.50f);
-    acrescentaAresta(G, ordemG, 20, 25, 110.43f);
-    acrescentaAresta(G, ordemG, 21, 26, 112.87f);
-    acrescentaAresta(G, ordemG, 22, 23, 207.67f);
-    acrescentaAresta(G, ordemG, 23, 24, 135.43f);
-    acrescentaAresta(G, ordemG, 24, 28, 78.97f);
-    acrescentaAresta(G, ordemG, 25, 26, 212.41f);
-    acrescentaAresta(G, ordemG, 22, 27, 114.91f);
-    acrescentaAresta(G, ordemG, 23, 28, 117.53f);
-    acrescentaAresta(G, ordemG, 25, 29, 115.58f);
-    acrescentaAresta(G, ordemG, 26, 30, 115.71f);
-    acrescentaAresta(G, ordemG, 27, 28, 206.12f);
-    acrescentaAresta(G, ordemG, 28, 29, 219.46f);
-    acrescentaAresta(G, ordemG, 29, 30, 212.37f);
-    acrescentaAresta(G, ordemG, 27, 31, 118.35f);
-    acrescentaAresta(G, ordemG, 28, 32, 118.79f);
-    acrescentaAresta(G, ordemG, 29, 33, 116.25f);
-    acrescentaAresta(G, ordemG, 30, 34, 117.29f);
-    acrescentaAresta(G, ordemG, 31, 32, 207.44f);
-    acrescentaAresta(G, ordemG, 32, 33, 214.40f);
-    acrescentaAresta(G, ordemG, 33, 34, 213.80f);
-    acrescentaAresta(G, ordemG, 31, 35, 116.70f);
-    acrescentaAresta(G, ordemG, 32, 36, 114.20f);
-    acrescentaAresta(G, ordemG, 33, 37, 114.73f);
-    acrescentaAresta(G, ordemG, 34, 38, 116.68f);
-    acrescentaAresta(G, ordemG, 35, 36, 211.53f);
-    acrescentaAresta(G, ordemG, 36, 37, 219.10f);
-    acrescentaAresta(G, ordemG, 37, 38, 214.51f);
+   /* --- INICIO DAS ARESTAS (Ordem Original) --- */
+    acrescentaAresta(G, ordemG, 0, 1, 213.2f);     /* A1:  V1 -- V2 */
+    acrescentaAresta(G, ordemG, 1, 2, 119.79f);    /* A2:  V2 -- V3 */
+    acrescentaAresta(G, ordemG, 2, 3, 46.35f);     /* A3:  V3 -- V4 */
+    acrescentaAresta(G, ordemG, 3, 4, 48.27f);     /* A4:  V4 -- V5 */
+    acrescentaAresta(G, ordemG, 0, 5, 111.17f);    /* A5:  V1 -- V6 */
+    acrescentaAresta(G, ordemG, 1, 6, 110.55f);    /* A6:  V2 -- V7 */
+    acrescentaAresta(G, ordemG, 2, 7, 110.94f);    /* A7:  V3 -- V8 */
+    acrescentaAresta(G, ordemG, 3, 8, 111.14f);    /* A8:  V4 -- V9 */
+    acrescentaAresta(G, ordemG, 4, 9, 111.27f);    /* A9:  V5 -- V10 */
+    acrescentaAresta(G, ordemG, 5, 6, 209.99f);    /* A10: V6 -- V7 */
+    acrescentaAresta(G, ordemG, 6, 7, 119.42f);    /* A11: V7 -- V8 */
+    acrescentaAresta(G, ordemG, 7, 8, 45.99f);     /* A12: V8 -- V9 */
+    acrescentaAresta(G, ordemG, 8, 9, 46.92f);     /* A13: V9 -- V10 */
+    acrescentaAresta(G, ordemG, 5, 11, 116.47f);   /* A14: V6 -- V12 */
+    acrescentaAresta(G, ordemG, 6, 12, 114.34f);   /* A15: V7 -- V13 (Great Kids School) */
+    acrescentaAresta(G, ordemG, 9, 14, 114.57f);   /* A16: V10 -- V15 */
+    acrescentaAresta(G, ordemG, 10, 11, 150.16f);  /* A17: V11 -- V12 (UBS Campestre) */
+    acrescentaAresta(G, ordemG, 11, 12, 211.10f);  /* A18: V12 -- V13 (Ponto de onibus 1) */
+    acrescentaAresta(G, ordemG, 12, 13, 96.89f);   /* A19: V13 -- V14 */
+    acrescentaAresta(G, ordemG, 13, 14, 118.29f);  /* A20: V14 -- V15 */
+    acrescentaAresta(G, ordemG, 14, 15, 212.88f);  /* A21: V15 -- V16 (Green Residence) */
+    acrescentaAresta(G, ordemG, 11, 16, 123.31f);  /* A22: V12 -- V17 (Auto Eletrica/Chaveiro) */
+    acrescentaAresta(G, ordemG, 12, 17, 116.35f);  /* A23: V13 -- V18 */
+    acrescentaAresta(G, ordemG, 13, 18, 114.87f);  /* A24: V14 -- V19 */
+    acrescentaAresta(G, ordemG, 14, 20, 121.40f);  /* A25: V15 -- V21 (Verzani e Sandrini) */
+    acrescentaAresta(G, ordemG, 15, 21, 127.81f);  /* A26: V16 -- V22 */
+    acrescentaAresta(G, ordemG, 16, 17, 211.79f);  /* A27: V17 -- V18 */
+    acrescentaAresta(G, ordemG, 17, 18, 93.76f);   /* A28: V18 -- V19 */
+    acrescentaAresta(G, ordemG, 18, 19, 41.71f);   /* A29: V19 -- V20 */
+    acrescentaAresta(G, ordemG, 19, 20, 79.83f);   /* A30: V20 -- V21 */
+    acrescentaAresta(G, ordemG, 20, 21, 212.83f);  /* A31: V21 -- V22 */
+    acrescentaAresta(G, ordemG, 16, 22, 112.52f);  /* A32: V17 -- V23 */
+    acrescentaAresta(G, ordemG, 17, 23, 111.62f);  /* A33: V18 -- V24 */
+    acrescentaAresta(G, ordemG, 19, 24, 107.50f);  /* A34: V20 -- V25 */
+    acrescentaAresta(G, ordemG, 20, 25, 110.43f);  /* A35: V21 -- V26 */
+    acrescentaAresta(G, ordemG, 21, 26, 112.87f);  /* A38: V22 -- V27 (Horizontal) */
+    acrescentaAresta(G, ordemG, 22, 23, 207.67f);  /* A37: V23 -- V24 (Paroquia Sao Judas) */
+    acrescentaAresta(G, ordemG, 23, 24, 135.43f);  /* A38: V24 -- V25 (Minha Casa - Vertical) */
+    acrescentaAresta(G, ordemG, 24, 25, 78.97f);   /* A39: V25 -- V26 */
+    acrescentaAresta(G, ordemG, 25, 26, 212.41f);  /* A40: V26 -- V27 */
+    acrescentaAresta(G, ordemG, 22, 27, 114.91f);  /* A41: V23 -- V28 */
+    acrescentaAresta(G, ordemG, 23, 28, 117.53f);  /* A42: V24 -- V29 */
+    acrescentaAresta(G, ordemG, 25, 29, 115.58f);  /* A43: V26 -- V30 (Ponto de onibus 2) */
+    acrescentaAresta(G, ordemG, 26, 30, 115.71f);  /* A44: V27 -- V31 (Smartfit) */
+    acrescentaAresta(G, ordemG, 27, 28, 206.12f);  /* A45: V28 -- V29 (Uooba, Armando Nissan) */
+    acrescentaAresta(G, ordemG, 28, 29, 219.46f);  /* A46: V29 -- V30 (Vetnasa, Vila Safari) */
+    acrescentaAresta(G, ordemG, 29, 30, 212.37f);  /* A47: V30 -- V31 (Alo Bebe) */
+    acrescentaAresta(G, ordemG, 27, 31, 118.35f);  /* A48: V28 -- V32 */
+    acrescentaAresta(G, ordemG, 28, 32, 118.79f);  /* A49: V29 -- V33 */
+    acrescentaAresta(G, ordemG, 29, 33, 116.25f);  /* A50: V30 -- V34 */
+    acrescentaAresta(G, ordemG, 30, 34, 117.29f);  /* A51: V31 -- V35 */
+    acrescentaAresta(G, ordemG, 31, 32, 207.44f);  /* A52: V32 -- V33 */
+    acrescentaAresta(G, ordemG, 32, 33, 214.40f);  /* A53: V33 -- V34 */
+    acrescentaAresta(G, ordemG, 33, 34, 213.80f);  /* A54: V34 -- V35 */
+    acrescentaAresta(G, ordemG, 31, 35, 116.70f);  /* A55: V32 -- V36 */
+    acrescentaAresta(G, ordemG, 32, 36, 114.20f);  /* A56: V33 -- V37 */
+    acrescentaAresta(G, ordemG, 33, 37, 114.73f);  /* A57: V34 -- V38 (Ponto de onibus 3) */
+    acrescentaAresta(G, ordemG, 34, 38, 116.68f);  /* A58: V35 -- V39 (Coop) */
+    acrescentaAresta(G, ordemG, 35, 36, 211.53f);  /* A59: V36 -- V37 (Actos) */
+    acrescentaAresta(G, ordemG, 36, 37, 219.10f);  /* A60: V37 -- V38 (Central IBC) */
+    acrescentaAresta(G, ordemG, 37, 38, 214.51f);  /* A61: V38 -- V39 */
 
     /* Inicializacao das estruturas */
     minha_casa.nome = "Minha Casa";

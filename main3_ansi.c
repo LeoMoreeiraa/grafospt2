@@ -406,9 +406,6 @@ void exibirResultadosCompleto(Vert G[], int ordem, PontoDeInteresse casa,
     total = 0.0f;
     dist_acumulada = 0.0f;
     
-    len_path = 0;
-    len_b = 0;
-    
     for (i = 0; i <= num_visitar; ++i) {
         orig_idx = rota[i];
         dest_idx = (i < num_visitar) ? rota[i+1] : rota[0];
@@ -425,31 +422,20 @@ void exibirResultadosCompleto(Vert G[], int ordem, PontoDeInteresse casa,
         if (dest_idx == 0) printf("Minha Casa\n");
         else printf("%s\n", locais[dest_idx-1].nome);
         
-        printf("  Caminho: ");
+        printf("  Vertices percorridos: ");
         
-        /* Mostra o ponto de partida na aresta */
-        if (orig_idx == 0) {
-            printf("[Minha Casa na aresta V%d-V%d]", casa.v1+1, casa.v2+1);
-        } else {
-            printf("[%s na aresta V%d-V%d]", locais[orig_idx-1].nome, origem.v1+1, origem.v2+1);
+        /* Imprime o caminho completo de vértices */
+        for (j = 0; j < len_path; j++) {
+            printf("V%d", path[j] + 1);
+            if (j < len_path - 1) printf(" -> ");
         }
         
-        /* Mostra os vertices intermediarios */
-        if (len_path > 0) {
-            printf(" -> ");
-            for (j = 0; j < len_path; j++) {
-                printf("V%d", path[j] + 1);
-                if (j < len_path - 1) printf(" -> ");
-            }
+        /* Se temos path_b, adiciona o último vértice */
+        if (len_b > 0) {
+            if (len_path > 0) printf(" -> ");
+            printf("V%d", path_b[0] + 1);
         }
         
-        /* Mostra o ponto de chegada na aresta */
-        printf(" -> ");
-        if (dest_idx == 0) {
-            printf("[Minha Casa na aresta V%d-V%d]", casa.v1+1, casa.v2+1);
-        } else {
-            printf("[%s na aresta V%d-V%d]", locais[dest_idx-1].nome, destino.v1+1, destino.v2+1);
-        }
         printf("\n");
         
         dist_acumulada += dist;
